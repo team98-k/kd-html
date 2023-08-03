@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td{
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="coin" placeholder="배팅금액">
+    <input type="text" id="bet" placeholder="맞출번호">
+    <button onclick="startRoulette()">가자 일확천금</button>
+
+    <table border="1"></table>
+    <script>
+        let redIdx = -1;
+        let blueIdx = -1;
+        let greenIdx = -1;
+        let coin = document.querySelector('#coin');
+        let result = document.querySelector('#bet');
+        
+        function startRoulette() {
+            console.log(result.value);
+            const tbs = document.querySelectorAll('td');
+            const interval = setInterval(function () {
+                for (let i = 0; i < tbs.length; i++) {
+                    tbs[i].style = 'background-color:white';
+                }
+                redIdx = Math.floor(Math.random() * tbs.length);
+                tbs[redIdx].style ='background-color:red';
+                blueIdx = Math.floor(Math.random() * tbs.length);
+                tbs[blueIdx].style = 'background-color:blue';
+                greenIdx = Math.floor(Math.random() * tbs.length);
+                tbs[greenIdx].style = 'background-color:green';
+            }, 200);
+            setTimeout(function(){
+                alert(`빨강번호: ${redIdx+1},파랑번호: ${blueIdx+1},녹색번호: ${greenIdx+1}`)
+                if(result.value == redIdx+1){
+                    coin.value -= 10;
+                    alert(`${coin.value}`);
+                }else if(result.value == blueIdx+1){
+                    coin.value += 10;
+                    alert(`${coin.value}`);
+                }else if(result.value == greenIdx+1){
+                    coin.value += 100;
+                    alert(`${coin.value}`);
+                }else{
+                    coin.value = 0;
+                    alert(`${coin.value}`);
+                }
+                clearInterval(interval);
+            },3000)
+        }
+        let html = '';
+        let cnt = 1;
+        for (let i = 1; i <= 5; i++) {
+            html += '<tr>';
+            for (let j = 1; j <= 10; j++) {
+            html += `<td>${cnt++}</td>`;
+            }
+            html += '</tr>';
+        }
+        document.querySelector('table').innerHTML = html;
+    </script>
+</body>
+</html>
