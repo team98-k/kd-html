@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="match('가위')">가위</button>
+    <button onclick="match('바위')">바위</button>
+    <button onclick="match('보')">보</button>
+    <div id="result"></div>
+    <script>
+        const values = ['가위', '바위', '보'];
+        const result = document.querySelector('#result');
+        function match(v){
+            const idx = Math.floor(Math.random()*3);
+            const tmpIdx = values.indexOf(v);
+            if(idx==tmpIdx){
+                result.innerHTML = '너 : ' + v + ', 컴퓨터 : ' + values[idx] +' 비겼다.<br>';
+                return;
+            }
+            if(idx<tmpIdx){
+                result.innerHTML = '너 : ' + v + ', 컴퓨터 : ' + values[idx] +' 이겼다.<br>';
+                return;  
+            }
+            result.innerHTML = '너 : ' + v + ', 컴퓨터 : ' + values[idx] +' 졌다.<br>';
+        }
+    </script>
+</body>
+</html>
