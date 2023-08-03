@@ -4,27 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        input[type="image"], img{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
 </head>
 <body>
-    <button onclick="match('가위')">가위</button>
-    <button onclick="match('바위')">바위</button>
-    <button onclick="match('보')">보</button>
+    <h1>Rock Paper Scissors</h1>
+    <input type="image" src="/img/0.png" alt="" onclick="match('가위')">
+    <input type="image" src="/img/1.png" alt="" onclick="match('바위')">
+    <input type="image" src="/img/2.png" alt="" onclick="match('보')">
+    <img id="comImg" src="" alt="">
+    <div></div>
     <div id="result"></div>
+
     <script>
         const values = ['가위', '바위', '보'];
         const result = document.querySelector('#result');
-        function match(v){
-            const idx = Math.floor(Math.random()*3);
+        let win = 0;
+        let lose = 0;
+        let tie = 0;
+
+        function match(v) {
+            const comIdx = Math.floor(Math.random() * 3);
+            document.querySelector('#comImg').src = `/img/${comIdx}.png`;
+
             const tmpIdx = values.indexOf(v);
-            if(idx==tmpIdx){
-                result.innerHTML = '너 : ' + v + ', 컴퓨터 : ' + values[idx] +' 비겼다.<br>';
-                return;
+            if (comIdx === tmpIdx) {
+                tie++;
+            } else if ((comIdx + 1) % 3 === tmpIdx) {
+                win++;
+            } else {
+                lose++;
             }
-            if(idx<tmpIdx){
-                result.innerHTML = '너 : ' + v + ', 컴퓨터 : ' + values[idx] +' 이겼다.<br>';
-                return;  
-            }
-            result.innerHTML = '너 : ' + v + ', 컴퓨터 : ' + values[idx] +' 졌다.<br>';
+
+            document.querySelector('#result').innerHTML = `${win} 승 ${lose} 패 ${tie} 무`;
         }
     </script>
 </body>

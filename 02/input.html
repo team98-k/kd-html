@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="return check()">
+        <input type="text" name="" id="id" placeholder="아이디"><br>
+        <input type="password" name="" id="pwd" placeholder="비밀번호"><br>
+        <div>
+            <label for="m">남자</label>
+            <input type="radio" name="trans" id="m">
+            <label for="f">여자</label>
+            <input type="radio" name="trans" id="f">
+        </div>
+        <button>로그인</button>
+    </form>
+    <script>
+        function check(){
+            const id = document.querySelector('#id');
+            const pwd = document.querySelector('#pwd');
+            if(id.value.trim().length<4){
+                alert('아이디는 4글자 이상입니다.');
+                id.value = '';
+                id.focus();
+                return false;
+            }
+            if(pwd.value.trim().length<4){
+                alert('비밀번호는 4글자 이상입니다.');
+                pwd.value = '';
+                pwd.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

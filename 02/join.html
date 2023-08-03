@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="return check()">
+        <input type="text" name="" id="name" placeholder="이름"><br>
+        <input type="text" name="" id="id" placeholder="아이디"><br>
+        <input type="password" name="" id="pwd" placeholder="비밀번호"><br>
+        <div>
+            <label for="m">남자</label>
+            <input type="radio" name="trans" id="m">
+            <label for="f">여자</label>
+            <input type="radio" name="trans" id="f">
+        </div><br>
+        <input type="text" name="" id="phone" placeholder="전화번호"><br>
+        <button type="submit">회원가입</button>
+    </form>
+    <script>
+        function check() {
+            const name = document.querySelector('#name');
+            const id = document.querySelector('#id');
+            const pwd = document.querySelector('#pwd');
+            const trans = document.querySelector('input[name="trans"]:checked');
+            const phone = document.querySelector('#phone');
+            console.log(trans.id);
+    
+            if (name.value.trim().length < 2) {
+                alert('이름은 2글자 이상입니다.');
+                name.value = '';
+                name.focus();
+                return false;
+            }    
+            if (id.value.trim().length < 4) {
+                alert('아이디는 4글자 이상입니다.');
+                id.value = '';
+                id.focus();
+                return false;
+            }
+            if (pwd.value.trim().length < 4) {
+                alert('비밀번호는 4글자 이상입니다.');
+                pwd.value = '';
+                pwd.focus();
+                return false;
+            }
+            if (!trans) {
+                alert('성별은 반드시 선택해야 합니다.');
+                return false;
+            }
+            if (phone.value.trim().length !== 11) {
+                alert('전화번호는 11자입니다.');
+                phone.value = '';
+                phone.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+    
+</body>
+</html>
