@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let money = 0;
+
+        function oddEven(num){
+            let myNum = num;
+            let comNum = Math.floor(Math.random() * 2);
+            if (comNum === myNum) {
+                money += parseInt(document.querySelector('#betMoney').value);
+            } else {
+                money -= parseInt(document.querySelector('#betMoney').value);
+            }
+            console.log(comNum);
+            document.querySelector('#money').innerHTML = money;
+        }
+
+        window.onload = function () {
+            const sDiv = document.querySelector('#sDiv');
+            const gDiv = document.querySelector('#gDiv');
+            gDiv.style.display = 'none';
+
+            document.querySelector('#sBtn').onclick = function () {
+                sDiv.style.display = 'none';
+                gDiv.style.display = 'block';
+                money = (Math.floor(Math.random() * 20) + 1) * 50000;
+                document.querySelector('#money').innerHTML = money;
+            };
+            
+            document.querySelector('#oddBtn').onclick = function () {
+                oddEven(1);
+            };
+
+            document.querySelector('#evenBtn').onclick = function () {
+                oddEven(0);
+            };
+        };
+    </script>
+    <div id="sDiv">
+        <button id="sBtn">시작</button>
+    </div>
+    <div id="gDiv">
+        금액 : <span id="money"></span>원<br>
+        <input type="text" id="betMoney"><br>
+        <button id="oddBtn">홀</button>
+        <button id="evenBtn">짝</button>
+    </div>
+</body>
+</html>

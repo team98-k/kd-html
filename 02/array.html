@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let arr = new Array();
+        let arr1 = [1,2,3];
+        console.log(arr1.indexOf(34));
+        console.log(arr1.includes(11));
+
+        let arr = [];
+        while(arr.length<3){
+            const rNum = Math.floor(Math.random()*3)+1;
+            if(arr.includes(rNum)){
+                continue;
+            }
+            arr.push(rNum);
+        }
+        console.log(arr);
+    </script>
+</body>
+</html>

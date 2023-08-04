@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getRandon(start, end){
+            return Math.floor(Math.random() * (end+1))+start;
+        }
+        const arr = [];
+       
+        window.onload = function(){
+            const gDiv =  document.querySelector('#gDiv');
+            gDiv.style.display = 'none';
+            const sDiv = document.querySelector('#sDiv');
+            document.querySelector('#sBtn').onclick = function(){
+                while(arr.length<3){
+                    const rNum = getRandon(0,9);
+                    if(!arr.includes(rNum)){
+                        arr.push(rNum);
+                    }
+                }
+                console.log(arr);
+                sDiv.style.display = 'none';
+                gDiv.style.display = 'block';
+            }
+            document.querySelector('#gBtn').onclick = function(){
+               let num1 = parseInt(document.querySelector('#num1').value);
+               let num2 = parseInt(document.querySelector('#num2').value);
+               let num3 = parseInt(document.querySelector('#num3').value);
+               let ball = 0;
+               let strike = 0;
+               let userInput = [num1, num2, num3];
+               for (let i = 0; i < userInput.length; i++) {
+                let userInputNum = userInput[i];
+                if (arr.indexOf(userInputNum) !== -1) {
+                        if (arr.indexOf(userInputNum) === i) {
+                            strike++;
+                        } else {
+                            ball++;
+                        }
+                    }
+                }
+                document.querySelector('#baseball').innerHTML = `ball: ${ball}, strike: ${strike}`;
+            }
+        }
+    </script>
+    <div id="sDiv">
+        <button id="sBtn">시작</button>
+    </div>
+    <div id="gDiv">
+        <input type="number" min="0" max="9" id="num1">
+        <input type="number" min="0" max="9" id="num2">
+        <input type="number" min="0" max="9" id="num3">
+        <button id="gBtn">맞추기</button>
+    </div>
+    <div id="baseball"></div>
+</body>
+</html>
