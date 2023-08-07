@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a  = '   a   ';
+        String.prototype.size = function(){
+            return this.length;
+        }
+        console.log(a);
+        console.log(a.trim());
+        console.log(a.size);
+        console.log(a.length);
+    </script>
+</body>
+</html>

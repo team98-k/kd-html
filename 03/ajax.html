@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="getInfo()">정보 가져오기</button>
+    <table border="1">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일</th>
+        </tr>
+        <tbody id="tBody"></tbody>
+    </table>
+    <script>
+        function getInfo(){
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://localhost:8080/json');
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState==4){
+                    if(xhr.status==200){
+                        const obj = JSON.parse(xhr.responseText);
+                        console.log(obj);
+                        let html = '';
+                        for(let i=0;i<obj.length;i++){
+                            const board = obj[i];
+                            html += '<tr>';
+                            html += `<td>${board.biNum}</td>`;
+                            html += `<td>${board.biTitle}</td>`;
+                            html += `<td>${board.credat}</td>`;
+                            html += '</tr>';
+                        }
+                        document.querySelector('#tBody').innerHTML = html;
+                    }
+                }
+            }
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
